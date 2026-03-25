@@ -138,8 +138,8 @@ def resolve_target_platform(target_platform):
 
     return platform
 
-# Add this to resolve the size
-def cnv_cifar10(target_platform=None, bitfile_path=None, model_name):
+# Param the model binarization+folding factor preset
+def cnv_cifar10(model_name ,target_platform=None, bitfile_path=None):
     target_platform = resolve_target_platform(target_platform)
     driver_mode = get_driver_mode()
     filename = find_bitfile(model_name, target_platform, bitfile_path)
