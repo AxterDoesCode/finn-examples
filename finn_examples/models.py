@@ -35,22 +35,6 @@ from qonnx.core.datatype import DataType
 
 from finn_examples.driver import FINNExampleOverlay
 
-_mnist_fc_io_shape_dict = {
-    "idt": [DataType["UINT8"]],
-    "odt": [DataType["UINT8"]],
-    "ishape_normal": [(1, 784)],
-    "oshape_normal": [(1, 1)],
-    "ishape_folded": [(1, 16, 49)],
-    "oshape_folded": [(1, 1, 1)],
-    "ishape_packed": [(1, 16, 49)],
-    "oshape_packed": [(1, 1, 1)],
-    "input_dma_name": ["idma0"],
-    "output_dma_name": ["odma0"],
-    "number_of_external_weights": 0,
-    "num_inputs": 1,
-    "num_outputs": 1,
-}
-
 _cifar10_cnv_io_shape_dict = {
     "idt": [DataType["UINT8"]],
     "odt": [DataType["UINT8"]],
@@ -59,120 +43,6 @@ _cifar10_cnv_io_shape_dict = {
     "ishape_folded": [(1, 32, 32, 3, 1)],
     "oshape_folded": [(1, 1, 1)],
     "ishape_packed": [(1, 32, 32, 3, 1)],
-    "oshape_packed": [(1, 1, 1)],
-    "input_dma_name": ["idma0"],
-    "output_dma_name": ["odma0"],
-    "number_of_external_weights": 0,
-    "num_inputs": 1,
-    "num_outputs": 1,
-}
-
-_gtsrb_cnv_io_shape_dict = {
-    "idt": [DataType["UINT8"]],
-    "odt": [DataType["INT16"]],
-    "ishape_normal": [(1, 32, 32, 3)],
-    "oshape_normal": [(1, 44)],
-    "ishape_folded": [(1, 32, 32, 3, 1)],
-    "oshape_folded": [(1, 11, 4)],
-    "ishape_packed": [(1, 32, 32, 3, 1)],
-    "oshape_packed": [(1, 11, 8)],
-    "input_dma_name": ["idma0"],
-    "output_dma_name": ["odma0"],
-    "number_of_external_weights": 0,
-    "num_inputs": 1,
-    "num_outputs": 1,
-}
-
-_bincop_cnv_io_shape_dict = {
-    "idt": [DataType["UINT8"]],
-    "odt": [DataType["UINT8"]],
-    "ishape_normal": [(1, 72, 72, 3)],
-    "oshape_normal": [(1, 1)],
-    "ishape_folded": [(1, 1, 72, 72, 1, 3)],
-    "oshape_folded": [(1, 1, 1)],
-    "ishape_packed": [(1, 1, 72, 72, 1, 3)],
-    "oshape_packed": [(1, 1, 1)],
-    "input_dma_name": ["idma0"],
-    "output_dma_name": ["odma0"],
-    "number_of_external_weights": 0,
-    "num_inputs": 1,
-    "num_outputs": 1,
-}
-
-_imagenet_top5inds_io_shape_dict = {
-    "idt": [DataType["UINT8"]],
-    "odt": [DataType["UINT16"]],
-    "ishape_normal": [(1, 224, 224, 3)],
-    "oshape_normal": [(1, 1, 1, 5)],
-    "ishape_folded": [(1, 224, 224, 3, 1)],
-    "oshape_folded": [(1, 1, 1, 5, 1)],
-    "ishape_packed": [(1, 224, 224, 3, 1)],
-    "oshape_packed": [(1, 1, 1, 5, 2)],
-    "input_dma_name": ["idma0"],
-    "output_dma_name": ["odma0"],
-    "number_of_external_weights": 0,
-    "num_inputs": 1,
-    "num_outputs": 1,
-}
-
-# resnet50 uses a different io_shape_dict due to
-# external weights for last layer
-_imagenet_resnet50_top5inds_io_shape_dict = {
-    "idt": [DataType["UINT8"]],
-    "odt": [DataType["UINT16"]],
-    "ishape_normal": [(1, 224, 224, 3)],
-    "oshape_normal": [(1, 5)],
-    "ishape_folded": [(1, 224, 224, 1, 3)],
-    "oshape_folded": [(1, 5, 1)],
-    "ishape_packed": [(1, 224, 224, 1, 3)],
-    "oshape_packed": [(1, 5, 2)],
-    "input_dma_name": ["idma0"],
-    "output_dma_name": ["odma0"],
-    "number_of_external_weights": 0,
-    "num_inputs": 1,
-    "num_outputs": 1,
-}
-
-_radioml_io_shape_dict = {
-    "idt": [DataType["INT8"]],
-    "odt": [DataType["UINT8"]],
-    "ishape_normal": [(1, 1024, 1, 2)],
-    "oshape_normal": [(1, 1)],
-    "ishape_folded": [(1, 1024, 1, 1, 2)],
-    "oshape_folded": [(1, 1, 1)],
-    "ishape_packed": [(1, 1024, 1, 1, 2)],
-    "oshape_packed": [(1, 1, 1)],
-    "input_dma_name": ["idma0"],
-    "output_dma_name": ["odma0"],
-    "number_of_external_weights": 0,
-    "num_inputs": 1,
-    "num_outputs": 1,
-}
-
-_gscv2_mlp_io_shape_dict = {
-    "idt": [DataType["INT8"]],
-    "odt": [DataType["UINT8"]],
-    "ishape_normal": [(1, 490)],
-    "oshape_normal": [(1, 1)],
-    "ishape_folded": [(1, 49, 10)],
-    "oshape_folded": [(1, 1, 1)],
-    "ishape_packed": [(1, 49, 10)],
-    "oshape_packed": [(1, 1, 1)],
-    "input_dma_name": ["idma0"],
-    "output_dma_name": ["odma0"],
-    "number_of_external_weights": 0,
-    "num_inputs": 1,
-    "num_outputs": 1,
-}
-
-_unsw_nb15_mlp_io_shape_dict = {
-    "idt": [DataType["BIPOLAR"]],
-    "odt": [DataType["BIPOLAR"]],
-    "ishape_normal": [(1, 600)],
-    "oshape_normal": [(1, 1)],
-    "ishape_folded": [(1, 15, 40)],
-    "oshape_folded": [(1, 1, 1)],
-    "ishape_packed": [(1, 15, 5)],
     "oshape_packed": [(1, 1, 1)],
     "input_dma_name": ["idma0"],
     "output_dma_name": ["odma0"],
@@ -268,38 +138,12 @@ def resolve_target_platform(target_platform):
 
     return platform
 
-
-def kws_mlp(target_platform=None, bitfile_path=None):
+# Add this to resolve the size
+def cnv_cifar10(target_platform=None, bitfile_path=None, model_name):
     target_platform = resolve_target_platform(target_platform)
     driver_mode = get_driver_mode()
-    model_name = "kwsmlp-w3a3"
     filename = find_bitfile(model_name, target_platform, bitfile_path)
-    return FINNExampleOverlay(filename, driver_mode, _gscv2_mlp_io_shape_dict)
-
-
-def tfc_w1a1_mnist(target_platform=None, bitfile_path=None):
-    target_platform = resolve_target_platform(target_platform)
-    driver_mode = get_driver_mode()
-    model_name = "tfc-w1a1"
-    filename = find_bitfile(model_name, target_platform, bitfile_path)
-    return FINNExampleOverlay(filename, driver_mode, _mnist_fc_io_shape_dict)
-
-
-def tfc_w1a2_mnist(target_platform=None, bitfile_path=None):
-    target_platform = resolve_target_platform(target_platform)
-    driver_mode = get_driver_mode()
-    model_name = "tfc-w1a2"
-    filename = find_bitfile(model_name, target_platform, bitfile_path)
-    return FINNExampleOverlay(filename, driver_mode, _mnist_fc_io_shape_dict)
-
-
-def tfc_w2a2_mnist(target_platform=None, bitfile_path=None):
-    target_platform = resolve_target_platform(target_platform)
-    driver_mode = get_driver_mode()
-    model_name = "tfc-w2a2"
-    filename = find_bitfile(model_name, target_platform, bitfile_path)
-    return FINNExampleOverlay(filename, driver_mode, _mnist_fc_io_shape_dict)
-
+    return FINNExampleOverlay(filename, driver_mode, _cifar10_cnv_io_shape_dict)
 
 def cnv_w1a1_cifar10(target_platform=None, bitfile_path=None):
     target_platform = resolve_target_platform(target_platform)
@@ -308,7 +152,6 @@ def cnv_w1a1_cifar10(target_platform=None, bitfile_path=None):
     filename = find_bitfile(model_name, target_platform, bitfile_path)
     return FINNExampleOverlay(filename, driver_mode, _cifar10_cnv_io_shape_dict)
 
-
 def cnv_w1a2_cifar10(target_platform=None, bitfile_path=None):
     target_platform = resolve_target_platform(target_platform)
     driver_mode = get_driver_mode()
@@ -316,6 +159,12 @@ def cnv_w1a2_cifar10(target_platform=None, bitfile_path=None):
     filename = find_bitfile(model_name, target_platform, bitfile_path)
     return FINNExampleOverlay(filename, driver_mode, _cifar10_cnv_io_shape_dict)
 
+def cnv_w2a1_cifar10(target_platform=None, bitfile_path=None):
+    target_platform = resolve_target_platform(target_platform)
+    driver_mode = get_driver_mode()
+    model_name = "cnv-w2a1"
+    filename = find_bitfile(model_name, target_platform, bitfile_path)
+    return FINNExampleOverlay(filename, driver_mode, _cifar10_cnv_io_shape_dict)
 
 def cnv_w2a2_cifar10(target_platform=None, bitfile_path=None):
     target_platform = resolve_target_platform(target_platform)
@@ -323,72 +172,6 @@ def cnv_w2a2_cifar10(target_platform=None, bitfile_path=None):
     model_name = "cnv-w2a2"
     filename = find_bitfile(model_name, target_platform, bitfile_path)
     return FINNExampleOverlay(filename, driver_mode, _cifar10_cnv_io_shape_dict)
-
-
-def bincop_cnv(target_platform=None, bitfile_path=None):
-    target_platform = resolve_target_platform(target_platform)
-    driver_mode = get_driver_mode()
-    model_name = "bincop-cnv"
-    filename = find_bitfile(model_name, target_platform, bitfile_path)
-    return FINNExampleOverlay(filename, driver_mode, _bincop_cnv_io_shape_dict)
-
-
-def mobilenetv1_w4a4_imagenet(target_platform=None, bitfile_path=None, rt_weights_path=None):
-    target_platform = resolve_target_platform(target_platform)
-    driver_mode = get_driver_mode()
-    model_name = "mobilenetv1-w4a4"
-    filename = find_bitfile(model_name, target_platform, bitfile_path)
-    if target_platform in ["ZCU104"]:
-        runtime_weight_dir = find_runtime_weights(model_name, target_platform, rt_weights_path)
-    else:
-        runtime_weight_dir = ""
-    # target 185 MHz for Zynq (this is ignored for Alveo)
-    fclk_mhz = 185.0
-    return FINNExampleOverlay(
-        filename,
-        driver_mode,
-        _imagenet_top5inds_io_shape_dict,
-        runtime_weight_dir=runtime_weight_dir,
-        fclk_mhz=fclk_mhz,
-    )
-
-
-def resnet50_w1a2_imagenet(target_platform=None, bitfile_path=None, rt_weights_path=None):
-    target_platform = resolve_target_platform(target_platform)
-    driver_mode = get_driver_mode()
-    model_name = "resnet50_w1a2"
-    filename = find_bitfile(model_name, target_platform, bitfile_path)
-    return FINNExampleOverlay(
-        filename,
-        driver_mode,
-        _imagenet_resnet50_top5inds_io_shape_dict,
-    )
-
-
-def vgg10_w4a4_radioml(target_platform=None, bitfile_path=None):
-    target_platform = resolve_target_platform(target_platform)
-    driver_mode = get_driver_mode()
-    model_name = "radioml_w4a4_small_tidy"
-    filename = find_bitfile(model_name, target_platform, bitfile_path)
-    fclk_mhz = 250.0
-    return FINNExampleOverlay(
-        filename,
-        driver_mode,
-        _radioml_io_shape_dict,
-        fclk_mhz=fclk_mhz,
-    )
-
-
-def mlp_w2a2_unsw_nb15(target_platform=None, bitfile_path=None):
-    target_platform = resolve_target_platform(target_platform)
-    driver_mode = get_driver_mode()
-    model_name = "unsw_nb15-mlp-w2a2"
-    filename = find_bitfile(model_name, target_platform, bitfile_path)
-    fclk_mhz = 100.0
-    return FINNExampleOverlay(
-        filename, driver_mode, _unsw_nb15_mlp_io_shape_dict, fclk_mhz=fclk_mhz
-    )
-
 
 def cnv_w1a1_gtsrb(target_platform=None, bitfile_path=None):
     target_platform = resolve_target_platform(target_platform)
